@@ -1,4 +1,4 @@
-import { ProductProps } from "../interfaces/ProductProps";
+﻿import { ProductProps } from "../interfaces/ProductProps";
 import { Category } from "./Category";
 
 export class Product implements ProductProps {
@@ -7,5 +7,13 @@ export class Product implements ProductProps {
     public name: string,
     public price: number,
     public category: Category
-  ) {}
+  ) {
+    if (!name.trim()) {
+      throw new Error("Product: o nome do produto não pode ser vazio.");
+    }
+
+    if (price < 0) {
+      throw new Error("Product: o preço não pode ser negativo.");
+    }
+  }
 }

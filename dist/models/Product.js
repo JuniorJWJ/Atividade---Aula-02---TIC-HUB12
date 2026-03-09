@@ -7,6 +7,12 @@ class Product {
         this.name = name;
         this.price = price;
         this.category = category;
+        if (!name.trim()) {
+            throw new Error("Product: o nome do produto não pode ser vazio.");
+        }
+        if (price < 0) {
+            throw new Error("Product: o preço não pode ser negativo.");
+        }
     }
 }
 exports.Product = Product;

@@ -6,12 +6,14 @@ export class Cart {
 
   addItem(product: Product, quantity: number): void {
     if (quantity <= 0) {
-      return;
+      throw new Error("Cart: a quantidade deve ser maior que zero.");
     }
 
-    const itemExists = this.items.some((item) => item.product.id === product.id);
+    const productAlreadyInCart = this.items.some(
+      (item) => item.product.id === product.id
+    );
 
-    if (itemExists) {
+    if (productAlreadyInCart) {
       this.items = this.items.map((item) =>
         item.product.id === product.id
           ? { ...item, quantity: item.quantity + quantity }
@@ -33,7 +35,8 @@ export class Cart {
       0
     );
   }
+
   getItems(): CartItem[] {
-    return this.items;
+    return [...this.items];
   }
 }
