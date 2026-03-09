@@ -1,0 +1,2 @@
+rodar: npm run dev
+compilar: npm run build
